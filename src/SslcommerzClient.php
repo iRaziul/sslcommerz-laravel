@@ -123,7 +123,7 @@ class SslcommerzClient
         string $state = ' ',
         string $postal = ' ',
         string $country = 'Bangladesh',
-        string $fax = null
+        ?string $fax = null
     ): self {
         $this->customer = [
             'cus_name' => $name,
@@ -146,11 +146,11 @@ class SslcommerzClient
     public function setShippingInfo(
         int $quantity,
         string $address,
-        string $name = null,
-        string $city = null,
-        string $state = null,
-        string $postal = null,
-        string $country = null
+        ?string $name = null,
+        ?string $city = null,
+        ?string $state = null,
+        ?string $postal = null,
+        ?string $country = null
     ): self {
         $this->shipping = [
             'shipping_method' => 'NO',

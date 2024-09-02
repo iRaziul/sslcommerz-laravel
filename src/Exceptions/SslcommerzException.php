@@ -2,6 +2,4 @@
 
 namespace Raziul\Sslcommerz\Exceptions;
 
-class SslcommerzException extends \Exception
-{
-}
+class SslcommerzException extends \Exception {}

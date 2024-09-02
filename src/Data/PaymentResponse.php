@@ -6,8 +6,7 @@ class PaymentResponse
 {
     public function __construct(
         protected ?array $data = null
-    ) {
-    }
+    ) {}
 
     /**
      * Get the status of the payment response in lowercase.
