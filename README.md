@@ -52,7 +52,7 @@ SSLC_ROUTE_IPN='sslc.ipn'
 Optionally, You can publish the configuration file using the following command:
 
 ```bash
-php artisan sslcommerz:install
+php artisan sslcommerz-laravel:install
 ```
 
 This will publish the `sslcommerz.php` file to your `config` directory.
