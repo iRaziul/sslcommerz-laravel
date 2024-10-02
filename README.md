@@ -81,10 +81,10 @@ Route::controller(SslcommerzController::class)
     ->prefix('sslcommerz') // prefix to avoid conflicts
     ->name('sslc.')
     ->group(function () {
-        Route::get('success', 'success')->name('success');
-        Route::get('failure', 'failure')->name('failure');
-        Route::get('cancel', 'cancel')->name('cancel');
-        Route::get('ipn', 'ipn')->name('ipn');
+        Route::post('success', 'success')->name('success');
+        Route::post('failure', 'failure')->name('failure');
+        Route::post('cancel', 'cancel')->name('cancel');
+        Route::post('ipn', 'ipn')->name('ipn');
     });
 ```
 
