@@ -1,6 +1,11 @@
-<a href="https://github.com/iraziul/sslcommerz-laravel">
+<a href="https://github.com/iRaziul/sslcommerz-laravel">
 <img style="width: 100%; max-width: 100%;" alt="Sslcommerz Laravel Package" src="/art/sslcommerz laravel.png" >
 </a>
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/iRaziul/sslcommerz-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/iRaziul/sslcommerz-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
+[![License](https://img.shields.io/packagist/l/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
 
 # Sslcommerz Laravel Package
 
@@ -8,19 +13,19 @@ This package provides an easy and convenient way to integrate **SSLCommerz** pay
 
 ## 🔥 Features
 
--   Great Developer Experience
--   Initiate payments via SSLCommerz
--   Set callback URLs for success, failure, cancellation and IPN
--   Validate payment transactions
--   Refund payments and check refund status
--   Verify hash from SSLCommerz responses
--   Sandbox and live environment support
+- Great Developer Experience
+- Initiate payments via SSLCommerz
+- Set callback URLs for success, failure, cancellation and IPN
+- Validate payment transactions
+- Refund payments and check refund status
+- Verify hash from SSLCommerz responses
+- Sandbox and live environment support
 
 ## Requirements
 
--   PHP 8.2 or above
--   Laravel 10.0 or above
--   SSLCommerz Credentials
+- PHP 8.2 or above
+- Laravel 10.0 through 13.x
+- SSLCommerz Credentials
 
 ## Installation
 
@@ -171,8 +176,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
--   [Raziul Islam](https://github.com/iRaziul)
--   [All Contributors](../../contributors)
+- [Raziul Islam](https://github.com/iRaziul)
+- [All Contributors](../../contributors)
 
 ## License
 
