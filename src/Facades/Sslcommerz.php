@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Raziul\Sslcommerz\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Raziul\Sslcommerz\SslcommerzClient;
 
 /**
  * @method static \Raziul\Sslcommerz\SslcommerzClient setOrder(int|float $amount, string $invoiceId, string $productName, string $productCategory = ' ')
@@ -19,12 +20,12 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Raziul\Sslcommerz\Data\RefundResponse refundPayment(string $bankTransactionId, int|float $amount, string $reason)
  * @method static \Raziul\Sslcommerz\Data\RefundStatus checkRefundStatus(string $refundRefId)
  *
- * @see \Raziul\Sslcommerz\SslcommerzClient
+ * @see SslcommerzClient
  */
 class Sslcommerz extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Raziul\Sslcommerz\SslcommerzClient::class;
+        return SslcommerzClient::class;
     }
 }

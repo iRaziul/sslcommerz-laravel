@@ -5,27 +5,19 @@ declare(strict_types=1);
 namespace Raziul\Sslcommerz;
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
+use Raziul\Sslcommerz\Console\Commands\InstallCommand;
 use Raziul\Sslcommerz\Exceptions\SslcommerzException;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class SslcommerzServiceProvider extends PackageServiceProvider
+final class SslcommerzServiceProvider extends ServiceProvider
 {
-    public function configurePackage(Package $package): void
+    /**
+     * Register any application services.
+     */
+    public function register(): void
     {
-        $package
-            ->name('sslcommerz-laravel')
-            ->hasConfigFile('sslcommerz')
-            ->hasInstallCommand(function (InstallCommand $command) {
-                $command
-                    ->publishConfigFile()
-                    ->askToStarRepoOnGitHub('iraziul/sslcommerz-laravel');
-            });
-    }
+        $this->mergeConfigFrom(__DIR__ . '/../config/sslcommerz.php', 'sslcommerz');
 
-    public function packageRegistered()
-    {
         $this->app->singleton(SslcommerzClient::class, function (Application $app) {
             $config = $app->config->get('sslcommerz');
 
@@ -47,5 +39,38 @@ class SslcommerzServiceProvider extends PackageServiceProvider
                 )
                 ->setProductProfile($config['product_profile']);
         });
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        $this->registerPublishing();
+        $this->registerCommands();
+    }
+
+    /**
+     * Register the package's publishable resources.
+     */
+    private function registerPublishing(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/sslcommerz.php' => config_path('sslcommerz.php'),
+            ], 'sslcommerz-config');
+        }
+    }
+
+    /**
+     * Register the package's commands.
+     */
+    private function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallCommand::class,
+            ]);
+        }
     }
 }

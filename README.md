@@ -12,7 +12,7 @@
 
 This package provides an easy and convenient way to integrate **SSLCommerz** payment gateway into your **Laravel** application. With features like payment processing, payment validation, refunds, and hash verification, this package offers a simple API for developers to quickly implement payment functionality.
 
-## 🔥 Features
+## Features
 
 - Great Developer Experience
 - Initiate payments via SSLCommerz
@@ -24,8 +24,8 @@ This package provides an easy and convenient way to integrate **SSLCommerz** pay
 
 ## Requirements
 
-- PHP 8.2 or above
-- Laravel 10.0 through 13.x
+- PHP 8.2+
+- Laravel 10+
 - SSLCommerz Credentials
 
 ## Installation
@@ -58,12 +58,12 @@ SSLC_ROUTE_IPN='sslc.ipn'
 Optionally, You can publish the configuration file using the following command:
 
 ```bash
-php artisan sslcommerz-laravel:install
+php artisan sslcommerz:install
 ```
 
 This will publish the `sslcommerz.php` file to your `config` directory.
 
-### ✨ Getting Sandbox Credentials
+### Getting Sandbox Credentials
 
 SSLCommerz credentials are required to use this package. You can get sandbox credentials by following these steps:
 
