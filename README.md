@@ -5,6 +5,7 @@
 # Sslcommerz Laravel Package
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
+[![Laravel Compatibility](https://badge.laravel.cloud/badge/raziul/sslcommerz-laravel?style=flat)](https://packagist.org/packages/raziul/sslcommerz-laravel)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/iRaziul/sslcommerz-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/iRaziul/sslcommerz-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
 [![License](https://img.shields.io/packagist/l/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
