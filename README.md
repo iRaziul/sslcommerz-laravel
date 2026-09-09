@@ -1,5 +1,5 @@
 <a href="https://github.com/iRaziul/sslcommerz-laravel">
-<img style="width: 100%; max-width: 100%;" alt="Sslcommerz Laravel Package" src="/art/sslcommerz laravel.png" >
+<img style="width: 100%; max-width: 100%;" alt="Sslcommerz Laravel Package" src="/art/sslcommerz-laravel.webp" >
 </a>
 
 # Sslcommerz Laravel Package
