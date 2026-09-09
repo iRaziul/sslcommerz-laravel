@@ -2,7 +2,12 @@
 <img style="width: 100%; max-width: 100%;" alt="Sslcommerz Laravel Package" src="/art/sslcommerz-laravel.webp" >
 </a>
 
-# Sslcommerz Laravel Package
+# SSLCommerz Laravel Package
+
+<p align="center">
+    <a href="README.md">🇬🇧 <strong>English</strong></a> •
+    <a href="README.bn.md">🇧🇩 বাংলা</a>
+</p>
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
 [![Laravel Compatibility](https://badge.laravel.cloud/badge/raziul/sslcommerz-laravel?style=flat)](https://packagist.org/packages/raziul/sslcommerz-laravel)
@@ -10,25 +15,49 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
 [![License](https://img.shields.io/packagist/l/raziul/sslcommerz-laravel.svg?style=flat-square)](https://packagist.org/packages/raziul/sslcommerz-laravel)
 
-This package provides an easy and convenient way to integrate **SSLCommerz** payment gateway into your **Laravel** application. With features like payment processing, payment validation, refunds, and hash verification, this package offers a simple API for developers to quickly implement payment functionality.
+This package provides an elegant and convenient way to integrate the **SSLCommerz** payment gateway into your **Laravel** application. With features like fluent payment initiation, server-side transaction validation, refund processing, and MD5 hash verification, this package offers a clean API for developers to implement payments quickly and securely.
 
-## Features
+---
 
-- Great Developer Experience
-- Initiate payments via SSLCommerz
-- Set callback URLs for success, failure, cancellation and IPN
-- Validate payment transactions
-- Refund payments and check refund status
-- Verify hash from SSLCommerz responses
-- Sandbox and live environment support
+## 📑 Table of Contents
 
-## Requirements
+- [Features](#-features)
+- [Requirements](#-requirements)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Quick Start](#-quick-start)
+- [Documentation](#-documentation)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+- [Security Vulnerabilities](#security-vulnerabilities)
+- [Credits](#credits)
+- [License](#license)
 
-- PHP 8.2+
-- Laravel 10+
-- SSLCommerz Credentials
+---
 
-## Installation
+## ✨ Features
+
+- 🚀 Great Developer Experience with a fluent, chainable API
+- 💳 Seamless payment session creation via SSLCommerz Hosted Checkout
+- 🔄 Automatic callback routing for Success, Failure, Cancel, and IPN
+- 🛡️ Direct server-to-server transaction validation
+- 💸 Full & partial refund support with refund status tracking
+- 🔐 Response authenticity verification using MD5 digital signatures
+- 🧪 Sandbox and Live production environments
+- 💱 Multi-currency support (BDT, USD, EUR, GBP, etc.)
+- 🎯 Payment gateway filtering (e.g. restrict to bKash, Nagad, Visa)
+
+---
+
+## 📋 Requirements
+
+- **PHP**: `8.2` or higher (`8.2`, `8.3`, `8.4`, `8.5`)
+- **Laravel**: `10.x`, `11.x`, `12.x`, `13.x`
+- **SSLCommerz Account**: Sandbox or Live Merchant credentials
+
+---
+
+## 📦 Installation
 
 You can install the package via Composer:
 
@@ -36,132 +65,77 @@ You can install the package via Composer:
 composer require raziul/sslcommerz-laravel
 ```
 
-Once installed, the service provider will be registered automatically.
+Laravel's package discovery will register the service provider and `Sslcommerz` facade automatically.
 
-## Configuration
+---
 
-Add the following environment variables to your `.env` file:
+## ⚙️ Configuration
 
-```bash
-SSLC_SANDBOX=true # or false for live
-SSLC_STORE_ID=your_store_id
-SSLC_STORE_PASSWORD=your_store_password
-SSLC_STORE_CURRENCY='BDT'
+### 1. Publish Configuration
 
-# SSLCommerz route names (optional)
-SSLC_ROUTE_SUCCESS='sslc.success'
-SSLC_ROUTE_FAILURE='sslc.failure'
-SSLC_ROUTE_CANCEL='sslc.cancel'
-SSLC_ROUTE_IPN='sslc.ipn'
-```
-
-Optionally, You can publish the configuration file using the following command:
+Publish the `config/sslcommerz.php` configuration file:
 
 ```bash
 php artisan sslcommerz:install
 ```
 
-This will publish the `sslcommerz.php` file to your `config` directory.
+### 2. Environment Variables
 
-### Getting Sandbox Credentials
+Add your credentials to `.env`:
 
-SSLCommerz credentials are required to use this package. You can get sandbox credentials by following these steps:
-
-1. **Create Sandbox Account**: Visit the [https://developer.sslcommerz.com/registration/](https://developer.sslcommerz.com/registration/) page to create an account.
-
-2. **Obtain Credentials:** After registration, you will receive your **Store ID** and **Store Password** via email or from the SSLCommerz dashboard.
-
-3. **Set Up in .env:** Copy these credentials and paste them into your `.env` file as shown in the [Configuration](#configuration) step.
-
-> [!IMPORTANT]
-> Sandbox credentials are for testing purposes only. You should replace them with your live credentials and change SANDBOX=false before deploying to production.
-
-## 💡 Usage
-
-### 1. **Defining Callback Routes**
-
-To handle different stages of the payment lifecycle, define your callback routes for success, failure, cancellation, and IPN (Instant Payment Notification):
-
-```php
-Route::controller(SslcommerzController::class)
-    ->prefix('sslcommerz') // prefix to avoid conflicts
-    ->name('sslc.')
-    ->group(function () {
-        Route::post('success', 'success')->name('success');
-        Route::post('failure', 'failure')->name('failure');
-        Route::post('cancel', 'cancel')->name('cancel');
-        Route::post('ipn', 'ipn')->name('ipn');
-    });
+```env
+SSLC_SANDBOX=true # Set to false for live production
+SSLC_STORE_ID=your_store_id
+SSLC_STORE_PASSWORD=your_store_password
+SSLC_STORE_CURRENCY=BDT
 ```
 
-We defined the `sslc.success`, `sslc.failure`, `sslc.cancel`, and `sslc.ipn` routes according to the configured route names.
-Now create the `SslcommerzController` controller and implement the `success`, `failure`, `cancel`, and `ipn` methods as required.
+---
 
-### 2. **Initiating a Payment**
+## 💡 Quick Start
 
-Initiating a payment has never been easier. For example, you can use the following code:
+### 1. Initiate a Payment
 
 ```php
-use \Raziul\Sslcommerz\Facades\Sslcommerz;
+use Raziul\Sslcommerz\Facades\Sslcommerz;
 
-$response = Sslcommerz::setOrder($amount, $invoiceId, $productName)
-    ->setCustomer($customerName, $customerEmail, $customerPhone)
-    ->setShippingInfo($itemsQuantity, $address)
+$response = Sslcommerz::setOrder($amount, $invoiceId, 'Order #' . $invoiceId)
+    ->setCustomer($name, $email, $phone, $address)
+    ->setShippingInfo(1, $address)
     ->makePayment();
 
 if ($response->success()) {
-    // payment initiated, redirect to payment page
     return redirect($response->gatewayPageURL());
-} else {
-    // Handle payment failure
 }
 ```
 
-The `makePayment` method returns an instance of `Raziul\Sslcommerz\Data\PaymentResponse` class. Check the [available methods](https://github.com/iRaziul/sslcommerz-laravel/wiki/PaymentResponse) for more details.
-
-### 3. **Validating a Payment**
-
-To validate a payment after a successful transaction:
+### 2. Validate the Payment
 
 ```php
-use \Raziul\Sslcommerz\Facades\Sslcommerz;
+use Raziul\Sslcommerz\Facades\Sslcommerz;
 
-$isValid = Sslcommerz::validatePayment($requestData, $transactionId, $amount);
+$isValid = Sslcommerz::validatePayment($request->all(), $transactionId, $amount);
 
 if ($isValid) {
-    // Payment is valid
-} else {
-    // Payment is invalid
+    // Payment is authentic and verified
+    $order->update(['status' => 'completed']);
 }
 ```
 
-### 4. **Refunds**
-
-If you need to refund a payment, you can do so easily:
-
-```php
-$refundResponse = Sslcommerz::refundPayment($bankTransactionId, $amount, $reason);
-```
-
-You can also check the refund status:
-
-```php
-$refundStatus = Sslcommerz::checkRefundStatus($refundRefId);
-```
-
-### 5. **Hash Verification**
-
-To verify the authenticity of the response from SSLCommerz, use the `verifyHash` method:
-
-```php
-if (Sslcommerz::verifyHash($request->all())) {
-    // Hash is valid
-}
-```
+---
 
 ## 📖 Documentation
 
-You can find detailed documentation, guides and examples on the [Wiki](https://github.com/iraziul/sslcommerz-laravel/wiki).
+- [Getting Started](docs/en/01-getting-started.md) ([বাংলা](docs/bn/01-getting-started.md))
+- [Basic Usage & Workflow](docs/en/02-basic-usage.md) ([বাংলা](docs/bn/02-basic-usage.md))
+- [Validation & Security](docs/en/03-validation-and-security.md) ([বাংলা](docs/bn/03-validation-and-security.md))
+- [Refunds](docs/en/04-refunds.md) ([বাংলা](docs/bn/04-refunds.md))
+- [Advanced Configuration](docs/en/05-advanced-configuration.md) ([বাংলা](docs/bn/05-advanced-configuration.md))
+- [API Reference](docs/en/06-api-reference.md) ([বাংলা](docs/bn/06-api-reference.md))
+- [Complete Example](docs/en/07-complete-example.md) ([বাংলা](docs/bn/07-complete-example.md))
+- [Testing & Troubleshooting](docs/en/08-testing-and-troubleshooting.md) ([বাংলা](docs/bn/08-testing-and-troubleshooting.md))
+
+---
 
 ## Changelog
 
